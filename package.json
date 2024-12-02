@@ -1,0 +1,16 @@
+{
+  "name": "animation-event-relay",
+  "version": "0.1.0",
+  "displayName": "Animation Event Relay",
+  "description": "Provides relay component for AnimationEvent",
+  "unity": "2022.3",
+  "dependencies": {},
+ "keywords": [
+    "animation"
+  ],
+  "author": {
+    "name": "Cj-bc",
+    "email": "cj.bc-sd@outlook.jp",
+    "url": "https://github.com/Cj-bc"
+  }
+}
