@@ -4,6 +4,7 @@
   "displayName": "Animation Event Relay",
   "description": "Provides relay component for AnimationEvent",
   "unity": "2022.3",
+  "license": "MIT",
   "dependencies": {},
  "keywords": [
     "animation"
