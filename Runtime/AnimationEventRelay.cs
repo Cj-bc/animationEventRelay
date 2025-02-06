@@ -24,8 +24,12 @@ public class AnimationEventRelay : MonoBehaviour
         if (isInitialized)
             return;
 
-        animator ??= GetComponent<Animator>();
-        if (animator is null)
+        if (animator == null)
+        {
+            animator = GetComponent<Animator>();
+        }
+
+        if (animator == null)
         {
             Debug.LogWarning("AnimationEventRelay should be attached to the same gameObject as Animator");
             enabled = false;
