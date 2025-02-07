@@ -12,7 +12,7 @@ public class AnimationEventRelay : MonoBehaviour
 
     /// <summary>Association of AnimationEventID and list of callback functions registered for it.</summary>
     /// <remark>Key represents the AnimationEventID attached to each AnimationEvent. Value is a list of registered callback functions.</remark>
-    private Dictionary<int, List<Action>> registeredCallbbacks = new();
+    private Dictionary<int, List<Action>> registeredCallbacks = new();
     /// <summary>Association of set of AnimationEvent and AnimationEventID</summary>
     private Dictionary<(AnimationClip, TimeSpan), int> animatoinEventIdMap = new();
 
@@ -65,7 +65,7 @@ public class AnimationEventRelay : MonoBehaviour
     {
         if (getClip(clipName) is AnimationClip c
             && animatoinEventIdMap.TryGetValue(new(c, time), out int id)
-            && registeredCallbbacks.GetValueOrDefault(id) is List<Action> callbacks)
+            && registeredCallbacks.GetValueOrDefault(id) is List<Action> callbacks)
         {
             callbacks.Remove(callback);
         }
@@ -75,14 +75,14 @@ public class AnimationEventRelay : MonoBehaviour
     private void Inject(AnimationClip clip, TimeSpan time, Action callback)
     {
         if (animatoinEventIdMap.TryGetValue((clip, time), out int id)
-            && registeredCallbbacks.TryGetValue(id, out List<Action> callbacks))
+            && registeredCallbacks.TryGetValue(id, out List<Action> callbacks))
         {
             callbacks.Add(callback);
         } else
         {
             id = randomizer.Next();
             // Stores callback function for internal use
-            registeredCallbbacks.Add(id, new() {callback});
+            registeredCallbacks.Add(id, new() {callback});
             animatoinEventIdMap.Add((clip, time), id);
 
             // Adds AnimationEvent to the clip
@@ -101,7 +101,7 @@ public class AnimationEventRelay : MonoBehaviour
 
     private void Receiver(int arg)
     {
-        if (registeredCallbbacks.TryGetValue(arg, out List<Action> callbacks))
+        if (registeredCallbacks.TryGetValue(arg, out List<Action> callbacks))
         {
             callbacks.ForEach(callback => callback());
         }
