@@ -15,15 +15,11 @@ public class AnimationEventRelay : MonoBehaviour
     private Dictionary<int, List<Action>> registeredCallbbacks = new();
     /// <summary>Association of set of AnimationEvent and AnimationEventID</summary>
     private Dictionary<(AnimationClip, TimeSpan), int> animatoinEventIdMap = new();
-    private bool isInitialized = false;
 
     private System.Random randomizer = new();
 
     public void OnEnable()
     {
-        if (isInitialized)
-            return;
-
         if (animator == null)
         {
             animator = GetComponent<Animator>();
