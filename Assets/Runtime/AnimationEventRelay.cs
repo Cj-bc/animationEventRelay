@@ -33,7 +33,7 @@ public class AnimationEventRelay : MonoBehaviour
         }
     }
 
-    /// <summary>Inject new AnimationEvent and call given callback</summary>
+    /// <summary>Add event listener for the time of the clip.</summary>
     /// <param name="callback">A function to call on registered timing</param>
     public void AddListener(string clipName, TimeSpan time, Action callback)
     {
@@ -43,7 +43,7 @@ public class AnimationEventRelay : MonoBehaviour
         }
     }
 
-    /// <summary>Inject new AnimationEvent at end of the clip and call given callback</summary>
+    /// <summary>Add event listener for the end of the clip.</summary>
     public void AddEndedListener(string clipName, Action callback)
     {
         if (getClip(clipName) is AnimationClip c)
@@ -60,7 +60,7 @@ public class AnimationEventRelay : MonoBehaviour
         }
     }
 
-    /// <summary>Unregister callback of given time.</summary>
+    /// <summary>Unregister callback of the time.</summary>
     public void RemoveListener(string clipName, TimeSpan time, Action callback)
     {
         if (getClip(clipName) is AnimationClip c
