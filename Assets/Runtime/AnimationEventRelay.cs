@@ -35,7 +35,7 @@ public class AnimationEventRelay : MonoBehaviour
 
     /// <summary>Inject new AnimationEvent and call given callback</summary>
     /// <param name="callback">A function to call on registered timing</param>
-    public void InjectAnimationEventListener(string clipName, TimeSpan time, Action callback)
+    public void InjectListener(string clipName, TimeSpan time, Action callback)
     {
         if (getClip(clipName) is AnimationClip c)
         {
@@ -56,12 +56,12 @@ public class AnimationEventRelay : MonoBehaviour
     {
         if (getClip(clipName) is AnimationClip c)
         {
-            RemoveAnimationEventListener(clipName, TimeSpan.FromSeconds(c.length), callback);
+            RemoveListener(clipName, TimeSpan.FromSeconds(c.length), callback);
         }
     }
 
     /// <summary>Unregister callback of given time.</summary>
-    public void RemoveAnimationEventListener(string clipName, TimeSpan time, Action callback)
+    public void RemoveListener(string clipName, TimeSpan time, Action callback)
     {
         if (getClip(clipName) is AnimationClip c
             && animatoinEventIdMap.TryGetValue(new(c, time), out int id)
