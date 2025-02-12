@@ -35,7 +35,7 @@ public class AnimationEventRelay : MonoBehaviour
 
     /// <summary>Inject new AnimationEvent and call given callback</summary>
     /// <param name="callback">A function to call on registered timing</param>
-    public void InjectListener(string clipName, TimeSpan time, Action callback)
+    public void AddListener(string clipName, TimeSpan time, Action callback)
     {
         if (getClip(clipName) is AnimationClip c)
         {
@@ -44,7 +44,7 @@ public class AnimationEventRelay : MonoBehaviour
     }
 
     /// <summary>Inject new AnimationEvent at end of the clip and call given callback</summary>
-    public void InjectEndedListener(string clipName, Action callback)
+    public void AddEndedListener(string clipName, Action callback)
     {
         if (getClip(clipName) is AnimationClip c)
         {
