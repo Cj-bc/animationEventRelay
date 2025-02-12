@@ -44,7 +44,7 @@ public class AnimationEventRelay : MonoBehaviour
     }
 
     /// <summary>Inject new AnimationEvent at end of the clip and call given callback</summary>
-    public void InjectAnimationEndedEventListener(string clipName, Action callback)
+    public void InjectEndedListener(string clipName, Action callback)
     {
         if (getClip(clipName) is AnimationClip c)
         {
@@ -52,7 +52,7 @@ public class AnimationEventRelay : MonoBehaviour
         }
     }
 
-    public void RemoveAnimationEndedEventListener(string clipName, Action callback)
+    public void RemoveEndedListener(string clipName, Action callback)
     {
         if (getClip(clipName) is AnimationClip c)
         {
