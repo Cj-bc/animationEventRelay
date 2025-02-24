@@ -33,9 +33,9 @@ public class AnimationEventRelay : MonoBehaviour
         }
     }
 
-    /// <summary>Inject new AnimationEvent and call given callback</summary>
+    /// <summary>Add event listener for the time of the clip.</summary>
     /// <param name="callback">A function to call on registered timing</param>
-    public void InjectAnimationEventListener(string clipName, TimeSpan time, Action callback)
+    public void AddListener(string clipName, TimeSpan time, Action callback)
     {
         if (getClip(clipName) is AnimationClip c)
         {
@@ -43,8 +43,8 @@ public class AnimationEventRelay : MonoBehaviour
         }
     }
 
-    /// <summary>Inject new AnimationEvent at end of the clip and call given callback</summary>
-    public void InjectAnimationEndedEventListener(string clipName, Action callback)
+    /// <summary>Add event listener for the end of the clip.</summary>
+    public void AddEndedListener(string clipName, Action callback)
     {
         if (getClip(clipName) is AnimationClip c)
         {
@@ -52,16 +52,16 @@ public class AnimationEventRelay : MonoBehaviour
         }
     }
 
-    public void RemoveAnimationEndedEventListener(string clipName, Action callback)
+    public void RemoveEndedListener(string clipName, Action callback)
     {
         if (getClip(clipName) is AnimationClip c)
         {
-            RemoveAnimationEventListener(clipName, TimeSpan.FromSeconds(c.length), callback);
+            RemoveListener(clipName, TimeSpan.FromSeconds(c.length), callback);
         }
     }
 
-    /// <summary>Unregister callback of given time.</summary>
-    public void RemoveAnimationEventListener(string clipName, TimeSpan time, Action callback)
+    /// <summary>Unregister callback of the time.</summary>
+    public void RemoveListener(string clipName, TimeSpan time, Action callback)
     {
         if (getClip(clipName) is AnimationClip c
             && animatoinEventIdMap.TryGetValue(new(c, time), out int id)
